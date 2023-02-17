@@ -49,5 +49,28 @@
 			"8.8.4.4",
 			"localhost"
 		]
-	}
+	},
+	,
+    "routing": {
+        "domainStrategy": "IPOnDemand",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "direct"
+            },
+             {
+                "type": "field",
+                "domain": ["regexp:.*\\.ir$"],
+                "outboundTag": "direct"
+              },
+              {
+                "outboundTag": "blocked",
+                "protocol": ["bittorrent"],
+                "type": "field"
+              },
+        ]
+    }
 }
